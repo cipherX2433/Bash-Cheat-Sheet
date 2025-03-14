@@ -115,10 +115,6 @@
 | `chmod u-x,g-x foo.sh` | Remove execute permission for user & group |
 | `chmod 755 foo.sh` | Set permission to `rwxr-xr-x` |
 
-This cheat sheet provides essential Bash commands with examples, formatted in a structured table format for easy reference. 🚀
-
-# Bash Cheat Sheet
-
 ## Finding Files
 
 | Command | Description |
@@ -229,289 +225,212 @@ This cheat sheet provides essential Bash commands with examples, formatted in a 
 | `du -h` | Show human-readable file sizes |
 | `du -d 1` | Show size of directories up to a depth of 1 |
 
----
 
-This table makes the cheat sheet easy to read and copy-paste into a GitHub README. Let me know if you want any modifications! 🚀
+| **Category**            | **Command**                              | **Description** |
+|------------------------|--------------------------------------|----------------|
+| **Memory Usage**      | `free`                               | Show memory usage |
+|                        | `free -h`                           | Show human-readable memory usage |
+|                        | `free -h --si`                      | Show memory usage in power of 1000 instead of 1024 |
+|                        | `free -s 5`                         | Show memory usage and update every 5 seconds |
+| **Package Management** | `apt update`                        | Refresh repository index |
+|                        | `apt search wget`                   | Search for a package |
+|                        | `apt show wget`                     | Show package details |
+|                        | `apt list --all-versions wget`      | List all versions of a package |
+|                        | `apt install wget`                  | Install the latest version of a package |
+|                        | `apt install wget=1.2.3`            | Install a specific version of a package |
+|                        | `apt remove wget`                   | Remove a package |
+|                        | `apt upgrade`                       | Upgrade all packages |
+| **Shutdown & Reboot**  | `shutdown`                          | Shutdown in 1 minute |
+|                        | `shutdown now "Cya later"`         | Shutdown immediately |
+|                        | `shutdown +5 "Cya later"`          | Shutdown in 5 minutes |
+|                        | `shutdown --reboot`                 | Reboot in 1 minute |
+|                        | `shutdown -r now "Cya later"`      | Reboot immediately |
+|                        | `shutdown -r +5 "Cya later"`       | Reboot in 5 minutes |
+|                        | `shutdown -c`                       | Cancel a shutdown/reboot |
+|                        | `reboot`                            | Reboot now |
+| **Process Management** | `top`                                | Show running processes interactively |
+|                        | `htop`                               | Enhanced process viewer |
+|                        | `ps all`                             | List all processes |
+|                        | `pidof foo`                          | Get PID of a process |
+|                        | `CTRL+Z`                             | Suspend foreground process |
+|                        | `bg`                                 | Resume suspended process in background |
+|                        | `fg`                                 | Bring background process to foreground |
+|                        | `jobs`                               | List background jobs |
+|                        | `kill PID`                           | Terminate process by PID |
+|                        | `kill -9 PID`                        | Force kill process by PID |
+|                        | `pkill foo`                          | Kill process by name |
+|                        | `pkill -9 foo`                       | Force kill process by name |
+| **Date & Time**        | `date`                               | Show current date and time |
+|                        | `date --iso-8601`                   | Show date in ISO 8601 format |
+| **Scheduled Tasks**    | `crontab -l`                         | List scheduled cron jobs |
+|                        | `crontab -e`                         | Edit cron jobs |
+| **Network Tools**      | `ping example.com`                   | Send ping requests |
+|                        | `ip addr`                            | Show IP addresses |
+|                        | `netstat -l`                         | List open ports |
+|                        | `traceroute example.com`            | Trace network route |
+|                        | `nmap 0.0.0.0`                      | Scan open ports |
+| **SSH & Secure Copy**  | `ssh user@hostname`                 | Connect to a remote server |
+|                        | `scp file.txt user@hostname:/dir`  | Securely copy file to a remote system |
+| **Terminal Multiplexers** | `tmux`                            | Start a tmux session |
+|                        | `tmux ls`                           | List tmux sessions |
+|                        | `screen`                            | Start a screen session |
+| **Hardware Info**      | `lsusb`                              | List USB devices |
+|                        | `lspci`                              | List PCI devices |
+|                        | `lshw`                               | Show all hardware info |
 
-Memory Usage
-free                   # Show memory usage
-free -h|--human        # Show human readable memory usage
-free -h|--human --si   # Show human readable memory usage in power of 1000 instead of 1024
-free -s|--seconds 5    # Show memory usage and update continuously every five seconds
-Packages
-apt update                   # Refreshes repository index
-apt search wget              # Search for a package
-apt show wget                # List information about the wget package
-apt list --all-versions wget # List all versions of the package
-apt install wget             # Install the latest version of the wget package
-apt install wget=1.2.3       # Install a specific version of the wget package
-apt remove wget              # Removes the wget package
-apt upgrade                  # Upgrades all upgradable packages
-Shutdown and Reboot
-shutdown                     # Shutdown in 1 minute
-shutdown now "Cya later"     # Immediately shut down
-shutdown +5 "Cya later"      # Shutdown in 5 minutes
 
-shutdown --reboot            # Reboot in 1 minute
-shutdown -r now "Cya later"  # Immediately reboot
-shutdown -r +5 "Cya later"   # Reboot in 5 minutes
+| Command | Description |
+|---------|-------------|
+| **tmux** | Start a new tmux session (`CTRL-b + d` to detach) |
+| `tmux ls` | List all tmux sessions |
+| `tmux attach -t 0` | Reattach to a tmux session |
+| **screen** | Start a new screen session (`CTRL-a + d` to detach) |
+| `screen -ls` | List all screen sessions |
+| `screen -R 31166` | Reattach to a screen session |
+| `exit` | Exit a session |
 
-shutdown -c                  # Cancel a shutdown or reboot
+### Secure Shell Protocol (SSH)
+| Command | Description |
+|---------|-------------|
+| `ssh hostname` | Connect to hostname using your current user name over the default SSH port (22) |
+| `ssh -i foo.pem hostname` | Connect to hostname using the identity file |
+| `ssh user@hostname` | Connect to hostname using the user over the default SSH port (22) |
+| `ssh user@hostname -p 8765` | Connect to hostname using the user over a custom port |
+| `ssh ssh://user@hostname:8765` | Connect to hostname using the user over a custom port |
 
-reboot                       # Reboot now
-reboot -f                    # Force a reboot
-Identifying Processes
-top                    # List all processes interactively
-htop                   # List all processes interactively
-ps all                 # List all processes
-pidof foo              # Return the PID of all foo processes
+### Secure Copy (SCP)
+| Command | Description |
+|---------|-------------|
+| `scp foo.txt ubuntu@hostname:/home/ubuntu` | Copy `foo.txt` into the specified remote directory |
 
-CTRL+Z                 # Suspend a process running in the foreground
-bg                     # Resume a suspended process and run in the background
-fg                     # Bring the last background process to the foreground
-fg 1                   # Bring the background process with the PID to the foreground
+### Bash Profile
+| Command | Description |
+|---------|-------------|
+| `bash - .bashrc` | Load `.bashrc` file |
+| `zsh - .zshrc` | Load `.zshrc` file |
+| `alias cp='cp --interactive'` | Prompt before overwriting files when copying |
+| `alias mv='mv --interactive'` | Prompt before overwriting files when moving |
+| `alias rm='rm --interactive'` | Prompt before deleting files |
+| `alias df='df -h'` | Show disk usage in a human-readable format |
+| `alias du='du -h'` | Show directory size in a human-readable format |
+| `function cd { builtin cd "$@" && ls; }` | Run `ls` automatically after `cd` |
 
-sleep 30 &             # Sleep for 30 seconds and move the process into the background
-jobs                   # List all background jobs
-jobs -p                # List all background jobs with their PID
+### Bash Scripting
+#### Variables
+| Command | Description |
+|---------|-------------|
+| `foo=123` | Initialize variable `foo` with `123` |
+| `declare -i foo=123` | Declare `foo` as an integer |
+| `declare -r foo=123` | Declare `foo` as a readonly variable |
+| `export foo` | Make `foo` available to child processes |
+| `unset foo` | Remove `foo` from the environment |
 
-lsof                   # List all open files and the process using them
-lsof -itcp:4000        # Return the process listening on port 4000
-Process Priority
-Process priorities go from -20 (highest) to 19 (lowest).
+#### Environment Variables
+| Command | Description |
+|---------|-------------|
+| `env` | List all environment variables |
+| `echo $PATH` | Print `PATH` environment variable |
+| `export FOO=Bar` | Set an environment variable |
 
-nice -n -20 foo        # Change process priority by name
-renice 20 PID          # Change process priority by PID
-ps -o ni PID           # Return the process priority of PID
-Killing Processes
-CTRL+C                 # Kill a process running in the foreground
-kill PID               # Shut down process by PID gracefully. Sends TERM signal.
-kill -9 PID            # Force shut down of process by PID. Sends SIGKILL signal.
-pkill foo              # Shut down process by name gracefully. Sends TERM signal.
-pkill -9 foo           # force shut down process by name. Sends SIGKILL signal.
-killall foo            # Kill all process with the specified name gracefully.
-Date & Time
-date                   # Print the date and time
-date --iso-8601        # Print the ISO8601 date
-date --iso-8601=ns     # Print the ISO8601 date and time
+#### Functions
+| Command | Description |
+|---------|-------------|
+| `greet() { echo "Hello $1"; }` | Define a function `greet` that takes an argument |
+| `greet "World"` | Call the `greet` function |
 
-time tree              # Time how long the tree command takes to execute
-Scheduled Tasks
-   *      *         *         *           *
-Minute, Hour, Day of month, Month, Day of the week
-crontab -l                 # List cron tab
-crontab -e                 # Edit cron tab in Vim
-crontab /path/crontab      # Load cron tab from a file
-crontab -l > /path/crontab # Save cron tab to a file
+#### Exit Codes
+| Command | Description |
+|---------|-------------|
+| `exit 0` | Exit the script successfully |
+| `exit 1` | Exit the script unsuccessfully |
+| `echo $?` | Print the last exit code |
 
-* * * * * foo              # Run foo every minute
-*/15 * * * * foo           # Run foo every 15 minutes
-0 * * * * foo              # Run foo every hour
-15 6 * * * foo             # Run foo daily at 6:15 AM
-44 4 * * 5 foo             # Run foo every Friday at 4:44 AM
-0 0 1 * * foo              # Run foo at midnight on the first of the month
-0 0 1 1 * foo              # Run foo at midnight on the first of the year
+### Conditional Statements
+#### Boolean Operators
+| Operator | Description |
+|---------|-------------|
+| `$foo` | Is true |
+| `!$foo` | Is false |
 
-at -l                      # List scheduled tasks
-at -c 1                    # Show task with ID 1
-at -r 1                    # Remove task with ID 1
-at now + 2 minutes         # Create a task in Vim to execute in 2 minutes
-at 12:34 PM next month     # Create a task in Vim to execute at 12:34 PM next month
-at tomorrow                # Create a task in Vim to execute tomorrow
-HTTP Requests
-curl https://example.com                               # Return response body
-curl -i|--include https://example.com                  # Include status code and HTTP headers
-curl -L|--location https://example.com                 # Follow redirects
-curl -o|--remote-name foo.txt https://example.com      # Output to a text file
-curl -H|--header "User-Agent: Foo" https://example.com # Add a HTTP header
-curl -X|--request POST -H "Content-Type: application/json" -d|--data '{"foo":"bar"}' https://example.com # POST JSON
-curl -X POST -H --data-urlencode foo="bar" http://example.com                           # POST URL Form Encoded
+#### Numeric Operators
+| Operator | Description |
+|---------|-------------|
+| `-eq` | Equals |
+| `-ne` | Not equals |
+| `-gt` | Greater than |
+| `-ge` | Greater than or equal to |
+| `-lt` | Less than |
+| `-le` | Less than or equal to |
+| `-e foo.txt` | Check if file exists |
+| `-z foo` | Check if variable exists |
 
-wget https://example.com/file.txt .                            # Download a file to the current directory
-wget -O|--output-document foo.txt https://example.com/file.txt # Output to a file with the specified name
-Network Troubleshooting
-ping example.com            # Send multiple ping requests using the ICMP protocol
-ping -c 10 -i 5 example.com # Make 10 attempts, 5 seconds apart
+#### String Operators
+| Operator | Description |
+|---------|-------------|
+| `=` | Equals |
+| `==` | Equals |
+| `-z` | Is null |
+| `-n` | Is not null |
+| `<` | Less than (ASCII order) |
+| `>` | Greater than (ASCII order) |
 
-ip addr                     # List IP addresses on the system
-ip route show               # Show IP addresses to router
-
-netstat -i|--interfaces     # List all network interfaces and in/out usage
-netstat -l|--listening      # List all open ports
-
-traceroute example.com      # List all servers the network traffic goes through
-
-mtr -w|--report-wide example.com                                    # Continually list all servers the network traffic goes through
-mtr -r|--report -w|--report-wide -c|--report-cycles 100 example.com # Output a report that lists network traffic 100 times
-
-nmap 0.0.0.0                # Scan for the 1000 most common open ports on localhost
-nmap 0.0.0.0 -p1-65535      # Scan for open ports on localhost between 1 and 65535
-nmap 192.168.4.3            # Scan for the 1000 most common open ports on a remote IP address
-nmap -sP 192.168.1.1/24     # Discover all machines on the network by ping'ing them
-DNS
-host example.com            # Show the IPv4 and IPv6 addresses
-
-dig example.com             # Show complete DNS information
-
-cat /etc/resolv.conf        # resolv.conf lists nameservers
-Hardware
-lsusb                  # List USB devices
-lspci                  # List PCI hardware
-lshw                   # List all hardware
-Terminal Multiplexers
-Start multiple terminal sessions. Active sessions persist reboots. tmux is more modern than screen.
-
-tmux             # Start a new session (CTRL-b + d to detach)
-tmux ls          # List all sessions
-tmux attach -t 0 # Reattach to a session
-
-screen           # Start a new session (CTRL-a + d to detach)
-screen -ls       # List all sessions
-screen -R 31166  # Reattach to a session
-
-exit             # Exit a session
-Secure Shell Protocol (SSH)
-ssh hostname                 # Connect to hostname using your current user name over the default SSH port 22
-ssh -i foo.pem hostname      # Connect to hostname using the identity file
-ssh user@hostname            # Connect to hostname using the user over the default SSH port 22
-ssh user@hostname -p 8765    # Connect to hostname using the user over a custom port
-ssh ssh://user@hostname:8765 # Connect to hostname using the user over a custom port
-Set default user and port in ~/.ssh/config, so you can just enter the name next time:
-
-$ cat ~/.ssh/config
-Host name
-  User foo
-  Hostname 127.0.0.1
-  Port 8765
-$ ssh name
-Secure Copy
-scp foo.txt ubuntu@hostname:/home/ubuntu # Copy foo.txt into the specified remote directory
-Bash Profile
-bash - .bashrc
-zsh - .zshrc
-# Always run ls after cd
-function cd {
-  builtin cd "$@" && ls
-}
-
-# Prompt user before overwriting any files
-alias cp='cp --interactive'
-alias mv='mv --interactive'
-alias rm='rm --interactive'
-
-# Always show disk usage in a human readable format
-alias df='df -h'
-alias du='du -h'
-Bash Script
-Variables
-#!/bin/bash
-
-foo=123                # Initialize variable foo with 123
-declare -i foo=123     # Initialize an integer foo with 123
-declare -r foo=123     # Initialize readonly variable foo with 123
-echo $foo              # Print variable foo
-echo ${foo}_'bar'      # Print variable foo followed by _bar
-echo ${foo:-'default'} # Print variable foo if it exists otherwise print default
-
-export foo             # Make foo available to child processes
-unset foo              # Make foo unavailable to child processes
-Environment Variables
-#!/bin/bash
-
-env            # List all environment variables
-echo $PATH     # Print PATH environment variable
-export FOO=Bar # Set an environment variable
-Functions
-#!/bin/bash
-
-greet() {
-  local world = "World"
-  echo "$1 $world"
-  return "$1 $world"
-}
-greet "Hello"
-greeting=$(greet "Hello")
-Exit Codes
-#!/bin/bash
-
-exit 0   # Exit the script successfully
-exit 1   # Exit the script unsuccessfully
-echo $?  # Print the last exit code
-Conditional Statements
-Boolean Operators
-$foo - Is true
-!$foo - Is false
-Numeric Operators
--eq - Equals
--ne - Not equals
--gt - Greater than
--ge - Greater than or equal to
--lt - Less than
--le - Less than or equal to
--e foo.txt - Check file exists
--z foo - Check if variable exists
-String Operators
-= - Equals
-== - Equals
--z - Is null
--n - Is not null
-< - Is less than in ASCII alphabetical order
-> - Is greater than in ASCII alphabetical order
-If Statements
-#!/bin/bash
-
-if [[$foo = 'bar']]; then
+#### If Statements
+```bash
+if [[ $foo = 'bar' ]]; then
   echo 'one'
-elif [[$foo = 'bar']] || [[$foo = 'baz']]; then
+elif [[ $foo = 'bar' ]] || [[ $foo = 'baz' ]]; then
   echo 'two'
-elif [[$foo = 'ban']] && [[$USER = 'bat']]; then
+elif [[ $foo = 'ban' ]] && [[ $USER = 'bat' ]]; then
   echo 'three'
 else
   echo 'four'
 fi
-Inline If Statements
-#!/bin/bash
+```
 
+#### Inline If Statements
+```bash
 [[ $USER = 'rehan' ]] && echo 'yes' || echo 'no'
-While Loops
-#!/bin/bash
+```
 
+### Loops
+#### While Loop
+```bash
 declare -i counter
 counter=10
-while [$counter -gt 2]; do
-  echo The counter is $counter
-  counter=counter-1
+while [[ $counter -gt 2 ]]; do
+  echo "The counter is $counter"
+  counter=$((counter-1))
 done
-For Loops
-#!/bin/bash
+```
 
-for i in {0..10..2}
-  do
-    echo "Index: $i"
-  done
+#### For Loops
+```bash
+for i in {0..10..2}; do
+  echo "Index: $i"
+done
 
-for filename in file1 file2 file3
-  do
-    echo "Content: " >> $filename
-  done
+for filename in file1 file2 file3; do
+  echo "Content: " >> $filename
+done
 
-for filename in *;
-  do
-    echo "Content: " >> $filename
-  done
-Case Statements
-#!/bin/bash
+for filename in *; do
+  echo "Content: " >> $filename
+done
+```
 
+### Case Statements
+```bash
 echo "What's the weather like tomorrow?"
 read weather
 
 case $weather in
-  sunny | warm ) echo "Nice weather: " $weather
-  ;;
-  cloudy | cool ) echo "Not bad weather: " $weather
-  ;;
-  rainy | cold ) echo "Terrible weather: " $weather
-  ;;
-  * ) echo "Don't understand"
-  ;;
+  sunny | warm ) echo "Nice weather: $weather" ;;
+  cloudy | cool ) echo "Not bad weather: $weather" ;;
+  rainy | cold ) echo "Terrible weather: $weather" ;;
+  * ) echo "Don't understand" ;;
 esac
+```
+
+This table provides a structured, easy-to-read format for your GitHub README. Let me know if you need any improvements! 🚀
+
+

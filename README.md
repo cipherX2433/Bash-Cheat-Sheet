@@ -431,6 +431,4 @@ case $weather in
 esac
 ```
 
-This table provides a structured, easy-to-read format for your GitHub README. Let me know if you need any improvements! 🚀
-
 
